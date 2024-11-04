@@ -1,0 +1,11 @@
+﻿# downloaded content
+
+# built content
+bin
+obj
+# user-specific files
+.idea
+
+# temp files
+
+# secrets
