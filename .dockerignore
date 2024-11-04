@@ -1,0 +1,19 @@
+﻿# downloaded content
+
+# built cotent
+**/bin
+**/obj
+# user-specific files
+.idea
+# temp files
+
+# secrets
+
+# non-production files
+appsettings.*.json
+**/launchSettings.json
+k8s.yaml
+**/.dockerignore
+**/.git
+**/.gitignore
+README.md
