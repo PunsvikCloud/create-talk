@@ -1,14 +1,14 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine as build
 
 WORKDIR /src
-COPY Breach.sln .
-COPY Breach.csproj .
-RUN dotnet restore Breach.sln
+COPY Create.sln .
+COPY Create.csproj .
+RUN dotnet restore Create.sln
 
 COPY . .
-RUN dotnet build -c Release Breach.sln
-RUN dotnet test -c Release Breach.sln
-RUN dotnet publish -c Release -o /dist Breach.sln
+RUN dotnet build -c Release Create.sln
+RUN dotnet test -c Release Create.sln
+RUN dotnet publish -c Release -o /dist Create.sln
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine
 
@@ -19,4 +19,4 @@ ENV ConnectionStrings__MyDB ""
 
 WORKDIR /app
 COPY --from=build /dist .
-CMD ["dotnet", "Breach.dll"]
+CMD ["dotnet", "Create.dll"]

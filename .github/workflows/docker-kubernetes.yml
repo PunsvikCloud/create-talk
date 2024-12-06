@@ -9,7 +9,7 @@ on:
 env:
   REGISTRY: ghcr.io
   PLATFORMS: linux/arm64
-  K8S_NAMESPACE: breach
+  K8S_NAMESPACE: create
 
 jobs:
   build:

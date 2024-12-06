@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Breach.Pages;
+namespace Create.Pages;
 
 public class IndexModel : PageModel
 {

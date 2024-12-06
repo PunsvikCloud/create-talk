@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: breach
-  name: breach-deployment
+  namespace: create
+  name: create-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: breach-deployment
+      app: create-deployment
   template:
     metadata:
       labels:
-        app: breach-deployment
+        app: create-deployment
         version: IMAGE_LABEL
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: breach-deployment
-          image: ghcr.io/punsvikcloud/breach-talk:IMAGE_LABEL
+        - name: create-deployment
+          image: ghcr.io/punsvikcloud/create-talk:IMAGE_LABEL
           imagePullPolicy: Always
           resources:
             limits:
@@ -33,37 +33,37 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: breach
-  name: breach-service
+  namespace: create
+  name: create-service
 spec:
   selector:
-    app: breach-deployment
+    app: create-deployment
   ports:
     - port: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: breach
-  name: breach-ingress
+  namespace: create
+  name: create-ingress
   labels:
-    name: breach-ingress
+    name: create-ingress
   annotations:
     cert-manager.io/cluster-issuer: lets-encrypt
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - breach.punsvik.net
+        - create.punsvik.net
       secretName: tls-secret
   rules:
-    - host: breach.punsvik.net
+    - host: create.punsvik.net
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: breach-service
+                name: create-service
                 port:
                   number: 8080
